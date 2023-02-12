@@ -1,11 +1,15 @@
 <template>
   <div class="product">Product</div>
-  <input :value="idProduct" @input="idProduct = $event.target.value" />
 </template>
 
 <script setup>
-const products = await fetch("https://fakestoreapi.com/products/" + idProduct);
-console.log(products);
+const { id } = defineProps({
+  id: Number,
+});
+
+const product = await (
+  await fetch("https://fakestoreapi.com/products/" + id)
+).json();
 </script>
 
 <style scoped>
