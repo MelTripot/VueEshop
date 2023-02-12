@@ -20,7 +20,6 @@ const card = defineProps({
 const onCardClick = () => {
   router.push({ name: "/product", params: { id: card.id } });
 };
-console.log(card);
 </script>
 
 <style scoped>

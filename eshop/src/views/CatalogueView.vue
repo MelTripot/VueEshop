@@ -2,24 +2,30 @@
   <div class="catalogue">
     <h1>Catalogue</h1>
     <div class="container">
-      <div v-for="item in categories">
-        <p>{{ item }}</p>
+      <div v-if="!IsAll">
+        <a style="margin: 1rem" v-for="item in categories">{{ item }}</a>
+
+        <a @click="IsAll = !IsAll">Voir tous les produits</a>
       </div>
 
-      <ProductCard
-        v-for="P of AllProduct"
-        :key="P"
-        :id="P.id"
-        :price="P.price"
-        :title="P.title"
-        :img="P.image"
-        :likes="P.rating.rate"
-      ></ProductCard>
+      <div v-if="IsAll">
+        <a @click="IsAll = !IsAll">Voir par categories</a>
+        <ProductCard
+          v-for="P of AllProduct"
+          :key="P"
+          :id="P.id"
+          :price="P.price"
+          :title="P.title"
+          :img="P.image"
+          :likes="P.rating.rate"
+        ></ProductCard>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import ProductCard from "../components/ProductCard.vue";
 const categories = await (
   await fetch("https://fakestoreapi.com/products/categories")
@@ -28,8 +34,7 @@ const categories = await (
 const AllProduct = await (
   await fetch("https://fakestoreapi.com/products")
 ).json();
-
-console.log(AllProduct);
+const IsAll = ref(false);
 </script>
 
 <style scoped>
