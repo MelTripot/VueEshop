@@ -10,15 +10,17 @@
 
       <div v-if="IsAll">
         <a @click="IsAll = !IsAll">Voir par categories</a>
-        <ProductCard
-          v-for="P of AllProduct"
-          :key="P"
-          :id="P.id"
-          :price="P.price"
-          :title="P.title"
-          :img="P.image"
-          :likes="P.rating.rate"
-        ></ProductCard>
+        <div class="divGrid">
+          <ProductCard
+            v-for="P of AllProduct"
+            :key="P"
+            :id="P.id"
+            :price="P.price"
+            :title="P.title"
+            :img="P.image"
+            :likes="P.rating.rate"
+          ></ProductCard>
+        </div>
       </div>
     </div>
   </div>
@@ -35,10 +37,15 @@ const AllProduct = await (
   await fetch("https://fakestoreapi.com/products")
 ).json();
 const IsAll = ref(false);
+// const filteredProducts = AllProduct.filter(e => e.category === *~~variableCategory~~*)
 </script>
 
 <style scoped>
 .catalogue {
   @apply;
+}
+.divGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 </style>
