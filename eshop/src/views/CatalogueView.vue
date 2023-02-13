@@ -2,17 +2,19 @@
   <div class="catalogue">
     <h1>Catalogue</h1>
     <div class="container">
-      <div v-if="!IsAll">
-        <a style="margin: 1rem" v-for="item in categories">{{ item }}</a>
+      <a
+        style="margin: 1rem"
+        v-for="item in categories"
+        @click="filtered(item)"
+        >{{ item }}</a
+      >
 
-        <a @click="IsAll = !IsAll">Voir tous les produits</a>
-      </div>
+      <a @click="filtered('All')">Voir tous les produits</a>
 
-      <div v-if="IsAll">
-        <a @click="IsAll = !IsAll">Voir par categories</a>
+      <div>
         <div class="divGrid">
           <ProductCard
-            v-for="P of AllProduct"
+            v-for="P of filteredProducts"
             :key="P"
             :id="P.id"
             :price="P.price"
@@ -27,8 +29,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import ProductCard from "../components/ProductCard.vue";
+import { reactive } from "vue";
 const categories = await (
   await fetch("https://fakestoreapi.com/products/categories")
 ).json();
@@ -36,8 +38,17 @@ const categories = await (
 const AllProduct = await (
   await fetch("https://fakestoreapi.com/products")
 ).json();
-const IsAll = ref(false);
-// const filteredProducts = AllProduct.filter(e => e.category === *~~variableCategory~~*)
+let filteredProducts = reactive(AllProduct);
+//  const filteredProducts = AllProduct.filter(e => e.category === *~~variableCategory~~*)
+function filtered(filtre) {
+  console.log(filtre);
+  if (filtre == "All") {
+    filteredProducts = AllProduct;
+  } else {
+    filteredProducts = AllProduct.filter((C) => C.category == filtre);
+    console.log(filteredProducts);
+  }
+}
 </script>
 
 <style scoped>
