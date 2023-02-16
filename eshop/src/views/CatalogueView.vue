@@ -30,7 +30,7 @@
 
 <script setup>
 import ProductCard from "../components/ProductCard.vue";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 const categories = await (
   await fetch("https://fakestoreapi.com/products/categories")
 ).json();
@@ -38,16 +38,15 @@ const categories = await (
 const AllProduct = await (
   await fetch("https://fakestoreapi.com/products")
 ).json();
-let filteredProducts = reactive(AllProduct);
+const filteredProducts = ref(AllProduct);
 //  const filteredProducts = AllProduct.filter(e => e.category === *~~variableCategory~~*)
 function filtered(filtre) {
-  console.log(filtre);
   if (filtre == "All") {
-    filteredProducts = AllProduct;
+    filteredProducts.value = AllProduct;
   } else {
-    filteredProducts = AllProduct.filter((C) => C.category == filtre);
-    console.log(filteredProducts);
+    filteredProducts.value = AllProduct.filter((C) => C.category == filtre);
   }
+  console.log(filteredProducts.value);
 }
 </script>
 
