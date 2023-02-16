@@ -46,7 +46,6 @@ function filtered(filtre) {
   } else {
     filteredProducts.value = AllProduct.filter((C) => C.category == filtre);
   }
-  console.log(filteredProducts.value);
 }
 </script>
 

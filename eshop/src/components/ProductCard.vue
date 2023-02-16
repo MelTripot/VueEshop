@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+import router from "@/router";
 const card = defineProps({
   id: Number,
   title: String,
@@ -18,7 +19,8 @@ const card = defineProps({
   likes: Number,
 });
 const onCardClick = () => {
-  router.push({ name: "/product", params: { id: card.id } });
+  router.push({ name: "product", params: { id: card.id } });
+  // router.push({ path: `/product/${card.id}` });
 };
 </script>
 
