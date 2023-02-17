@@ -2,15 +2,21 @@
   <div class="wrapper">
     <div class="d-flex gap-12">
       <div class="row">
-        <div class="column">
+        <div class="column1">
+          <div>{{ product.category }}</div>
           <img :src="product.image" width="400" class="product-img" />
           <h1>{{ product.title }}</h1>
         </div>
-        <div class="column">
+        <div class="column2">
           <div class="product-description">
             <span>{{ product.description }}</span>
+            <span>
+              {{ product.rating.rate }}
+              <img src="../assets/star.png" class="icon" />
+              - {{ product.rating.count }} avis</span
+            >
             <span class="text-h4 text-secondary font-weight-bold">
-              ${{ product.price }}
+              {{ product.price }} €
             </span>
             <button class="pannier">Ajouter au panier</button>
           </div>
@@ -34,6 +40,9 @@ const product = await (
 <style scoped>
 .product {
   @apply;
+}
+.icon {
+  max-width: 12px;
 }
 .pannier {
   appearance: none;
@@ -64,6 +73,7 @@ const product = await (
   display: flex;
   align-items: center;
   min-height: 660px;
+  width: 1000px;
 }
 .product-img {
   max-height: 37.5em;
@@ -83,7 +93,11 @@ const product = await (
   justify-content: flex-end;
   gap: 2em;
 }
-.column {
+.column1 {
+  float: left;
+  width: 50%;
+}
+.column2 {
   float: left;
   width: 50%;
 }
