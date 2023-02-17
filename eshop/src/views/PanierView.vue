@@ -6,9 +6,9 @@
   <div v-for="a of store.artictelst">
     <!-- <div> -->
     {{ a.title }}
-    <button>+</button>
+    <button @click="changeQuantity(a.id, a.quantity - 1)">-</button>
     {{ a.quantity }}
-    <button>-</button>
+    <button @click="changeQuantity(a.id, a.quantity + 1)">+</button>
   </div>
 </template>
 
@@ -16,6 +16,9 @@
 import { usePanierStore } from "../stores/panier";
 const store = usePanierStore();
 console.log(store.artictelst);
+function changeQuantity(id, qte) {
+  store.changeQuantity(id, qte);
+}
 </script>
 <style scoped>
 .panier {
