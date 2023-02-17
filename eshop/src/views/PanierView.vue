@@ -3,7 +3,7 @@
 
   Votre panier est actuellement vide
 
-  <div v-for="a of artictelst">
+  <div v-for="a of store.artictelst">
     <!-- <div> -->
     {{ a.title }}
     <button>+</button>
@@ -14,9 +14,8 @@
 
 <script setup>
 import { usePanierStore } from "../stores/panier";
-const artictelst = await (
-  await fetch("https://fakestoreapi.com/products")
-).json(); //todo change
+const store = usePanierStore();
+console.log(store.artictelst);
 </script>
 <style scoped>
 .panier {

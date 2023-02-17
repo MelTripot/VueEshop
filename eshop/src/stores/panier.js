@@ -11,6 +11,7 @@ export const usePanierStore = defineStore("panier", () => {
       article.quantity = 1;
       artictelst.value.push(article);
     }
+    console.log(artictelst.value);
   }
   const count = computed(() => articlelst.value.length);
   function changeQuantity(id, qte) {}
