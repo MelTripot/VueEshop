@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CatalogueView from "../views/CatalogueView.vue";
 import PanierView from "../views/PanierView.vue";
-import AllView from "../views/AllView.vue";
+import ProductView from "../views/ProductView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,9 +23,9 @@ const router = createRouter({
       component: PanierView,
     },
     {
-      path: "/all",
-      name: "all",
-      component: AllView,
+      path: "/product/:id",
+      name: "product",
+      component: ProductView,
     },
   ],
 });

@@ -6,7 +6,9 @@ import Menu from "./components/Menu.vue";
 <template>
   <div class="app">
     <Menu></Menu>
-    <RouterView />
+    <Suspense>
+      <RouterView />
+    </Suspense>
   </div>
 </template>
 
