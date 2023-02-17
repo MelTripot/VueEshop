@@ -18,7 +18,10 @@
             <span class="text-h4 text-secondary font-weight-bold">
               {{ product.price }} €
             </span>
-            <button class="pannier">Ajouter au panier</button>
+            <button class="pannier" @click="onAddClick">
+              <img class="iconPanier" src="../assets/add-cart.png" /> Ajouter au
+              panier
+            </button>
           </div>
         </div>
       </div>
@@ -28,10 +31,13 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-
+import { usePanierStore } from "../stores/panier";
+const store = usePanierStore();
 const route = useRoute();
 const id = route.params.id;
-
+const onAddClick = () => {
+  store.add(product);
+};
 const product = await (
   await fetch("https://fakestoreapi.com/products/" + id)
 ).json();
@@ -40,6 +46,9 @@ const product = await (
 <style scoped>
 .product {
   @apply;
+}
+.iconPanier {
+  max-height: 24px;
 }
 .icon {
   max-width: 12px;

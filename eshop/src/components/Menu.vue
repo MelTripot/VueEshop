@@ -4,10 +4,10 @@
       <nav class="nav">
         <RouterLink to="/" style="margin: 1rem">Home</RouterLink>
         <RouterLink to="/catalogue" style="margin: 1rem">Catalogue</RouterLink>
-        <RouterLink to="/product" style="margin: 1rem"
-          >faut que je vire ça</RouterLink
-        >
-        <RouterLink to="/panier" style="margin: 1rem">Panier</RouterLink>
+
+        <RouterLink to="/panier" style="margin: 1rem"
+          ><img class="icon" src="../assets/panier.png"
+        /></RouterLink>
 
         <!-- <RouterLink to="/about">About</RouterLink> -->
       </nav>
@@ -20,5 +20,10 @@
 <style scoped>
 .nav {
   @apply inline-flex w-screen;
+  margin-top: 2rem;
+}
+
+.icon {
+  max-width: 24px;
 }
 </style>
