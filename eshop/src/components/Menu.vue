@@ -6,7 +6,7 @@
         <RouterLink to="/catalogue" style="margin: 1rem">Catalogue</RouterLink>
 
         <RouterLink to="/panier" style="margin: 1rem"
-          ><img class="icon" src="../assets/panier.png"
+          >{{ count }} <img class="icon" src="../assets/panier.png"
         /></RouterLink>
 
         <!-- <RouterLink to="/about">About</RouterLink> -->
@@ -15,7 +15,11 @@
   </header>
 </template>
 
-<script scoped></script>
+<script setup>
+import { usePanierStore } from "../stores/panier";
+const store = usePanierStore();
+let count = store.count;
+</script>
 
 <style scoped>
 .nav {

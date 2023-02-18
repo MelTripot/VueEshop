@@ -13,15 +13,16 @@ export const usePanierStore = defineStore("panier", () => {
       article.quantity = 1;
       artictelst.value.push(article);
     }
-    console.log(artictelst.value);
+    calculCount();
   }
-  const count = computed(() => calculCount());
+  const count = ref(0);
   function calculCount() {
     let tot = 0;
     artictelst.value.forEach((x) => {
       tot += x.quantity;
     });
-    return tot;
+    console.log(tot);
+    count.value = tot;
   }
   function changeQuantity(id, qte) {
     //en vrai bloquer la descente pour pas descendre en dessous de 1 et forcer l'utilisation du bouton suppr
@@ -31,12 +32,13 @@ export const usePanierStore = defineStore("panier", () => {
       artictelst.value[i].qtePrice =
         artictelst.value[i].quantity * artictelst.value[i].price;
     }
+    calculCount();
   }
   function removeItem(id) {
     const i = artictelst.value.findIndex((x) => x.id == id);
     artictelst = artictelst.value.splice(i, 1);
     // delete artictelst.value[i];
-    console.log(artictelst.value);
+    calculCount();
   }
 
   const prixTot = computed(() => calculPrixtot());
