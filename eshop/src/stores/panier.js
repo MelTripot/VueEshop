@@ -50,7 +50,8 @@ export const usePanierStore = defineStore("panier", () => {
     return tot;
   }
   function $reset() {
-    artictelst = [];
+    artictelst.value = [];
+    calculCount();
   }
 
   return {
