@@ -17,8 +17,9 @@
 
 <script setup>
 import { usePanierStore } from "../stores/panier";
+import { computed } from "vue";
 const store = usePanierStore();
-let count = store.count;
+const count = computed(() => store.count);
 </script>
 
 <style scoped>

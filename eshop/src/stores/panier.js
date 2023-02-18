@@ -53,5 +53,13 @@ export const usePanierStore = defineStore("panier", () => {
     artictelst = [];
   }
 
-  return { count, artictelst, prixTot, add, removeItem, changeQuantity };
+  return {
+    count,
+    artictelst,
+    prixTot,
+    add,
+    removeItem,
+    changeQuantity,
+    $reset,
+  };
 });
