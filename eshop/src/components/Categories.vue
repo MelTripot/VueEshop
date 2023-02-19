@@ -57,25 +57,20 @@ function filtered(filtre) {
 }
 let sorted = "";
 function sort(param) {
-  switch (param) {
-    case "nd":
-      filteredProducts.value.sort(function (a, b) {
-        return a.rating.rate - b.rating.rate;
-      });
-    case "nc":
-      filteredProducts.value.sort(function (a, b) {
-        return b.rating.rate - a.rating.rate;
-      });
-    case "a":
-      filteredProducts.value.sort(function (a, b) {
-        return a.title - b.title;
-      });
-    case "ad":
-      filteredProducts.value.sort(function (a, b) {
-        return b.title - a.title;
-      });
-    default:
-      break;
+  if (param == "nd") {
+    filteredProducts.value.sort((x) => x.rating.rate);
+  } else if (param == "nc") {
+    filteredProducts.value.sort(function (a, b) {
+      return b.rating.rate - a.rating.rate;
+    });
+  } else if (param == "a") {
+    filteredProducts.value.sort(function (a, b) {
+      return a.title - b.title;
+    });
+  } else if (param == "ad") {
+    filteredProducts.value.sort(function (a, b) {
+      return b.title - a.title;
+    });
   }
 }
 </script>
